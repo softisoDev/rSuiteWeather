@@ -1,8 +1,5 @@
-import {observable} from "mobx";
-
-
-class DashboardStore {
-    public pageTitle: string = "Dashboard"
+class WeatherSingleStore {
+    public pageTitle: string = "WeatherSingle"
 }
 
-export default new DashboardStore();
+export default new WeatherSingleStore();
