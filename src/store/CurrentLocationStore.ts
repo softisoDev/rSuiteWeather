@@ -2,15 +2,14 @@ import {action, observable} from "mobx";
 
 class CurrentLocationStore {
 
-    @observable
     private _currentLocation;
 
-    @action
+
     setCurrentLocation = (value: Position) => {
         this._currentLocation = value
     }
 
-    currentLocation = () => {
+    getCurrentLocation = () => {
         return this._currentLocation;
     }
 
@@ -18,7 +17,6 @@ class CurrentLocationStore {
     constructor() {
         navigator.geolocation.getCurrentPosition((position)  => {
             this.setCurrentLocation(position);
-            console.log(position);
         });
     }
 }
