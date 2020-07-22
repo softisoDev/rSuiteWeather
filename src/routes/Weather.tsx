@@ -24,7 +24,6 @@ const Weather = observer(() => {
                         <InputGroupWidthButton
                             inputProps={{
                                 placeholder: "Search city...",
-                                id: 'cityName',
                             }}
 
                             inputGroupProps={{
