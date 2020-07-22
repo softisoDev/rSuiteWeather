@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Admin from "../layouts/admin";
 import WeatherStore from "../store/WeatherStore";
 import {Col, Grid, Row, InputGroup, Input, Icon} from "rsuite";
@@ -12,19 +12,6 @@ import {geolocated} from "react-geolocated";
 const handleClick = () => {
     WeatherApiStore.makeRequest(FormElementsStore.inputValue);
 }
-
-const getUserLocation = geolocated({
-    positionOptions: {
-        enableHighAccuracy: true,
-        maximumAge: 0,
-        timeout: Infinity,
-    },
-    userDecisionTimeout: 5000,
-    watchPosition: false,
-    suppressLocationOnMount: false,
-    geolocationProvider: navigator.geolocation,
-    isOptimisticGeolocationEnabled: true,
-});
 
 const Weather = observer(() => {
 

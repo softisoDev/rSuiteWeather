@@ -1,5 +1,6 @@
 import {action, observable} from "mobx";
 import axios from "axios";
+import {getPosition} from "../../libs/utls";
 
 
 interface IResult {
@@ -24,7 +25,13 @@ class WeatherApiStore {
         this._currentLocation = value
     }
 
-    getCurrentLocation = () => {
+    public async initCurrentLocation(): Promise<void> {
+        this.setCurrentLocation(await getPosition());
+        this.getCurrentLocationWeather(this._currentLocation.coords.latitude, this._currentLocation.coords.longitude);
+    }
+
+    @action
+    public async getCurrentLocation(): Promise<void> {
         return this._currentLocation;
     }
 
@@ -49,13 +56,6 @@ class WeatherApiStore {
     @action
     setResponse = (value) => {
         this.response = value;
-    }
-
-    constructor() {
-        navigator.geolocation.getCurrentPosition((position) => {
-            this.setCurrentLocation(position);
-            this.getCurrentLocationWeather(position.coords.latitude, position.coords.longitude);
-        });
     }
 
     public makeRequest = (cityName) => {

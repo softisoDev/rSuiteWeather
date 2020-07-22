@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import WeatherApiStore from "../store/api/WeatherApiStore";
 import {observer} from "mobx-react";
 import {Col, Panel, Row} from "rsuite";
 
 
 export const GetWeather = observer(() => {
+
+    useEffect(() => {
+        WeatherApiStore.initCurrentLocation();
+    })
 
     return (
         <Row>
