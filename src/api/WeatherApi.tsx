@@ -8,7 +8,7 @@ export const GetWeather = observer(() => {
 
     return (
         <Row>
-            <Panel shaded bordered bodyFill header={WeatherApiStore.result.city + " " + WeatherApiStore.result.country}>
+            <Panel shaded bordered bodyFill header={WeatherApiStore.result.city + ", " + WeatherApiStore.result.country}>
                 <img src={WeatherApiStore.result.weatherImgUrl} height="120"/>
                 <Col xs={12} sm={12} md={18} lg={18}>
                     <p><strong>Current temperature: </strong>{WeatherApiStore.result.temp}{WeatherApiStore.result.temp ? "°C" : ""}</p>

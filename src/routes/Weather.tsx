@@ -7,11 +7,24 @@ import FormElementsStore from "../store/FormElementsStore";
 import {GetWeather} from "../api/WeatherApi";
 import {observer} from "mobx-react";
 import WeatherApiStore from "../store/api/WeatherApiStore";
-
+import {geolocated} from "react-geolocated";
 
 const handleClick = () => {
     WeatherApiStore.makeRequest(FormElementsStore.inputValue);
 }
+
+const getUserLocation = geolocated({
+    positionOptions: {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: Infinity,
+    },
+    userDecisionTimeout: 5000,
+    watchPosition: false,
+    suppressLocationOnMount: false,
+    geolocationProvider: navigator.geolocation,
+    isOptimisticGeolocationEnabled: true,
+});
 
 const Weather = observer(() => {
 
