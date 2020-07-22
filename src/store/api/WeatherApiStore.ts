@@ -1,32 +1,47 @@
 import {action, observable} from "mobx";
 import axios from "axios";
 
+interface IResult {
+    city: string;
+    weatherType: string;
+    weatherDesc: string;
+    temp: number | undefined;
+    humidity: number | undefined;
+    country: string
+}
 
 class WeatherApiStore {
     private apiKey = "b2e0e0cf5b6b39ee22795bc33c0bb235"
 
-    private makeRequest = () => {
-        axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + this.cityName + "&appid=" + this.apiKey).then((response) => {
-            this.setResponse(response.data.results);
+    public makeRequest = (cityName) => {
+        axios.get("http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + this.apiKey + "&units=metric").then((response) => {
+            this.setResponse(response);
+            this.setResult({
+                city: cityName,
+                weatherType: response.data.weather[0].main,
+                weatherDesc: response.data.weather[0].description,
+                country: response.data.sys.country,
+                humidity: response.data.main.humidity,
+                temp: response.data.main.temp,
+            })
         });
     }
 
     @observable
-    public cityName = "";
-
-    @action
-    setCityName = (value) => {
-        this.cityName = value;
-    }
+    public response = "Response";
 
     @observable
-    public response = "";
-
-    @observable
-    public result = {};
+    public result: IResult = {
+        city: "",
+        weatherType: "",
+        weatherDesc: "",
+        country: "",
+        humidity: undefined,
+        temp: undefined,
+    };
 
     @action
-    setResult = (value) => {
+    setResult = (value: IResult) => {
         this.result = value;
     }
 
@@ -34,8 +49,6 @@ class WeatherApiStore {
     setResponse = (value) => {
         this.response = value;
     }
-
-
 }
 
 export default new WeatherApiStore()

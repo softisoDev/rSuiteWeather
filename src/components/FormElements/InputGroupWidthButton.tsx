@@ -7,7 +7,7 @@ import {observer} from "mobx-react";
 export interface ICustomInputGroupWidthButton {
     inputGroupProps?: InputGroupProps;
     inputProps?: InputProps & InputHTMLAttributes<any>;
-    onClickIcon?: (e) => void,
+    onClickIcon?: () => void,
 }
 
 //value={FormElementsStore.inputValue} onChange={FormElementsStore.setInputValue}

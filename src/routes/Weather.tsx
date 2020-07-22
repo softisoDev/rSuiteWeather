@@ -6,13 +6,15 @@ import InputGroupWidthButton from "../components/FormElements/InputGroupWidthBut
 import FormElementsStore from "../store/FormElementsStore";
 import axios from "axios";
 import {GetWeather} from "../api/WeatherApi";
+import {observer} from "mobx-react";
+import WeatherApiStore from "../store/api/WeatherApiStore";
 
 
-const handleClick = (e) => {
-    console.log(FormElementsStore.inputValue);
+const handleClick = () => {
+    WeatherApiStore.makeRequest(FormElementsStore.inputValue);
 }
 
-const Weather = () => {
+const Weather = observer(() => {
 
     return (
         <Admin pageTitle={WeatherStore.pageTitle}>
@@ -32,13 +34,17 @@ const Weather = () => {
                             onClickIcon={handleClick}
                         />
                     </Col>
-                    <Col xs={24} sm={12} md={8} lg={6}>
-                        <GetWeather/>
-                    </Col>
+                    <Col xs={24} sm={12} md={8} lg={6}></Col>
+                </Row>
+
+                <Row>
+                  <Col xs={24} sm={24} md={24} lg={24} className="mt-3">
+                      <GetWeather/>
+                  </Col>
                 </Row>
             </Grid>
         </Admin>
     )
-}
+});
 
 export default Weather;
