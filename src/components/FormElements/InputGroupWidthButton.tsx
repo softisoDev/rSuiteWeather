@@ -10,8 +10,6 @@ export interface ICustomInputGroupWidthButton {
     onClickIcon?: () => void,
 }
 
-//value={FormElementsStore.inputValue} onChange={FormElementsStore.setInputValue}
-
 const InputGroupWidthButton: FC<ICustomInputGroupWidthButton> =  observer(({inputGroupProps, inputProps, ...props}) => {
     return (
         <InputGroup {...inputGroupProps} inside>

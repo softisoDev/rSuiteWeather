@@ -4,7 +4,6 @@ import WeatherStore from "../store/WeatherStore";
 import {Col, Grid, Row, InputGroup, Input, Icon} from "rsuite";
 import InputGroupWidthButton from "../components/FormElements/InputGroupWidthButton";
 import FormElementsStore from "../store/FormElementsStore";
-import axios from "axios";
 import {GetWeather} from "../api/WeatherApi";
 import {observer} from "mobx-react";
 import WeatherApiStore from "../store/api/WeatherApiStore";

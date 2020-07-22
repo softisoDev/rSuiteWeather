@@ -8,6 +8,7 @@ interface IResult {
     temp: number | undefined;
     humidity: number | undefined;
     country: string
+    weatherImgUrl?: string
 }
 
 class WeatherApiStore {
@@ -23,6 +24,7 @@ class WeatherApiStore {
                 country: response.data.sys.country,
                 humidity: response.data.main.humidity,
                 temp: response.data.main.temp,
+                weatherImgUrl: "http://openweathermap.org/img/wn/" + response.data.weather[0].icon + "@2x.png"
             })
         });
     }
@@ -38,6 +40,7 @@ class WeatherApiStore {
         country: "",
         humidity: undefined,
         temp: undefined,
+        // weatherImgUrl: "http://openweathermap.org/img/wn/10d@2x.png"
     };
 
     @action
