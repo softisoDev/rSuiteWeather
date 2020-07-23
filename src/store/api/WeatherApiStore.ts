@@ -18,6 +18,14 @@ class WeatherApiStore {
     private _apiHost = "http://api.openweathermap.org/data/2.5/weather";
 
     @observable
+    public isCurrent: boolean = true;
+
+    @action
+    setIsCurrent = (value) => {
+        this.isCurrent = false;
+    }
+
+    @observable
     private _currentLocation;
 
     @action
@@ -28,6 +36,7 @@ class WeatherApiStore {
     public async initCurrentLocation(): Promise<void> {
         this.setCurrentLocation(await getPosition());
         this.getCurrentLocationWeather(this._currentLocation.coords.latitude, this._currentLocation.coords.longitude);
+        this.setIsCurrent(false);
     }
 
     @action

@@ -7,7 +7,9 @@ import {Col, Panel, Row} from "rsuite";
 export const GetWeather = observer(() => {
 
     useEffect(() => {
-        WeatherApiStore.initCurrentLocation();
+        if (WeatherApiStore.isCurrent){
+            WeatherApiStore.initCurrentLocation();
+        }
     })
 
     return (
