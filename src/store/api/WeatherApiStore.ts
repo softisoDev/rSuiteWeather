@@ -14,7 +14,7 @@ interface IResult {
 }
 
 class WeatherApiStore {
-    private _apiKey = "b2e0e0cf5b6b39ee22795bc33c0bb235";
+    private _apiKey = ""; //your api key
     private _apiHost = "http://api.openweathermap.org/data/2.5/weather";
 
     @observable
